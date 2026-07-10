@@ -567,9 +567,18 @@ body.nav-open { overflow: hidden; }
 }
 .gallery-main img { aspect-ratio: 4 / 3; object-fit: cover; width: 100%; }
 
-.gallery-thumbs { display: flex; gap: 0.7rem; margin-top: 0.8rem; }
+.gallery-thumbs {
+  display: flex;
+  gap: 0.7rem;
+  margin-top: 0.8rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  padding-bottom: 0.3rem;
+}
 .gallery-thumb {
   width: 84px;
+  flex-shrink: 0;
   border: 2px solid var(--line);
   border-radius: var(--radius-sm);
   padding: 0;
