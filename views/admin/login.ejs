@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anmelden · <%= settings.shop_name %> Admin</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body class="login-body">
+  <form class="login-card" method="post" action="/admin/login">
+    <svg viewBox="0 0 32 32" aria-hidden="true" class="login-mark">
+      <rect width="32" height="32" rx="7" fill="#E8543F"/>
+      <path d="M14.5 5h3v22h-3z" fill="#FFF7F1"/>
+      <path d="M5 14.5h22v3H5z" fill="#FFF7F1"/>
+    </svg>
+    <h1>Admin-Bereich</h1>
+    <p>Melde dich an, um Boxen und Bestellungen zu verwalten.</p>
+
+    <% if (noPassword) { %>
+      <p class="login-error">
+        In der Datei <code>.env</code> ist kein <code>ADMIN_PASSWORD</code> gesetzt.
+        Bitte dort ein Passwort eintragen und den Server neu starten.
+      </p>
+    <% } %>
+    <% if (error) { %><p class="login-error"><%= error %></p><% } %>
+
+    <label for="password">Passwort</label>
+    <input type="password" id="password" name="password" autocomplete="current-password" autofocus required>
+    <button type="submit" class="btn-admin btn-admin-primary">Anmelden</button>
+    <a class="login-back" href="/">← Zurück zum Shop</a>
+  </form>
+</body>
+</html>

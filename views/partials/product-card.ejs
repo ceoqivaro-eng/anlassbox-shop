@@ -1,0 +1,20 @@
+<article class="product-card">
+  <a class="card-link" href="/box/<%= product.slug %>">
+    <div class="card-media">
+      <% if (product.badge) { %><span class="card-badge"><%= product.badge %></span><% } %>
+      <img src="<%= product.images[0] || '/img/boxes/platzhalter.svg' %>" alt="<%= product.name %>" loading="lazy">
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <% if (product.category_name) { %><span class="card-category"><%= product.category_name %></span><% } %>
+        <% if (product.item_count) { %><span class="card-pieces"><%= product.item_count %> Teile</span><% } %>
+      </div>
+      <h3 class="card-title"><%= product.name %></h3>
+      <p class="card-subtitle"><%= product.subtitle %></p>
+      <div class="card-footer">
+        <span class="card-price"><%= formatEuro(product.price_cents) %></span>
+        <span class="card-cta">Ansehen<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </div>
+  </a>
+</article>

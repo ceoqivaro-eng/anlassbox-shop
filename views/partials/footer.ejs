@@ -1,0 +1,42 @@
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <span class="brand-name">Anlass<em>Box</em></span>
+      <p>Handverpackte Geschenkboxen für die Momente, die man nicht vergisst.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Shop">
+      <h3>Shop</h3>
+      <a href="/#boxen">Alle Boxen</a>
+      <a href="/#so-gehts">So funktioniert&rsquo;s</a>
+      <a href="/warenkorb">Warenkorb</a>
+    </nav>
+    <nav class="footer-nav" aria-label="Rechtliches">
+      <h3>Rechtliches</h3>
+      <a href="/impressum">Impressum</a>
+      <a href="/datenschutz">Datenschutz</a>
+      <a href="/agb">AGB</a>
+      <a href="/widerruf">Widerruf</a>
+    </nav>
+    <div class="footer-nav">
+      <h3>Versand &amp; Zahlung</h3>
+      <p class="footer-note">
+        Versand aus Deutschland.<br>
+        <% if (settings.free_shipping_from_cents > 0) { %>
+          Kostenloser Versand ab <%= formatEuro(settings.free_shipping_from_cents) %>.<br>
+        <% } %>
+        Sichere Zahlung über Stripe.
+      </p>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>&copy; <%= new Date().getFullYear() %> <%= settings.shop_name %></span>
+    <span>Alle Preise inkl. MwSt., zzgl. Versand</span>
+  </div>
+</footer>
+
+<div class="toast" data-toast role="status" aria-live="polite" hidden></div>
+<script src="/js/cart.js"></script>
+</body>
+</html>

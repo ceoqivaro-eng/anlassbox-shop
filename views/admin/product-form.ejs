@@ -1,0 +1,127 @@
+<%- include('partials/head') %>
+
+<header class="admin-page-head">
+  <div>
+    <h1><%= isNew ? 'Neue Box' : 'Box bearbeiten' %></h1>
+    <p><%= isNew ? 'Eine neue Geschenkbox anlegen – gleiche Struktur wie alle anderen.' : product.name %></p>
+  </div>
+  <a class="btn-admin" href="/admin/produkte">← Zurück zur Übersicht</a>
+</header>
+
+<% errors.forEach((error) => { %>
+  <p class="flash flash-error"><%= error %></p>
+<% }) %>
+
+<form method="post" enctype="multipart/form-data" class="admin-form">
+
+  <section class="form-card">
+    <h2>Grunddaten</h2>
+    <div class="form-grid">
+      <label class="span-2">
+        <span>Name der Box *</span>
+        <input type="text" name="name" value="<%= product.name %>" required data-slug-source>
+      </label>
+      <label>
+        <span>Preis in € *</span>
+        <input type="text" name="price" inputmode="decimal" placeholder="49,90"
+               value="<%= product.price_cents ? (product.price_cents / 100).toFixed(2).replace('.', ',') : '' %>" required>
+      </label>
+      <label>
+        <span>Kategorie</span>
+        <select name="category_id">
+          <option value="">– Keine –</option>
+          <% categories.forEach((category) => { %>
+            <option value="<%= category.id %>" <%= product.category_id === category.id ? 'selected' : '' %>>
+              <%= category.name %>
+            </option>
+          <% }) %>
+        </select>
+      </label>
+      <label>
+        <span>… oder neue Kategorie anlegen</span>
+        <input type="text" name="new_category" placeholder="z. B. Feiertage">
+      </label>
+      <label>
+        <span>Badge (optional)</span>
+        <input type="text" name="badge" value="<%= product.badge %>" placeholder="z. B. Bestseller">
+      </label>
+      <label class="span-2">
+        <span>Kurzbeschreibung (eine Zeile unter dem Namen)</span>
+        <input type="text" name="subtitle" value="<%= product.subtitle %>" placeholder="z. B. Alles für den Start in den eigenen vier Wänden">
+      </label>
+      <label class="span-2">
+        <span>Beschreibung</span>
+        <textarea name="description" rows="5" placeholder="Wofür ist die Box? Für wen ist sie das perfekte Geschenk?"><%= product.description %></textarea>
+      </label>
+      <label>
+        <span>URL-Kennung (Slug)</span>
+        <input type="text" name="slug" value="<%= product.slug %>" placeholder="wird automatisch erzeugt" data-slug-target>
+      </label>
+      <label>
+        <span>Sortierung (kleiner = weiter vorne)</span>
+        <input type="number" name="sort" value="<%= product.sort %>">
+      </label>
+      <label class="check-label span-2">
+        <input type="checkbox" name="active" value="1" <%= product.active ? 'checked' : '' %>>
+        <span>Im Shop sichtbar</span>
+      </label>
+    </div>
+  </section>
+
+  <section class="form-card">
+    <h2>Das ist drin <span class="muted">(Unterartikel)</span></h2>
+    <p class="form-help">
+      Jede Zeile ist ein Teil der Box. Leere Zeilen werden ignoriert –
+      so bleibt jede Box flexibel, aber immer gleich strukturiert.
+    </p>
+    <div class="item-rows" data-item-rows>
+      <% items.forEach((item) => { %>
+        <div class="item-row">
+          <input type="text" name="item_name" value="<%= item.name %>" placeholder="Artikelname, z. B. Duftkerze „Neues Zuhause“">
+          <input type="text" name="item_note" value="<%= item.note %>" placeholder="Kurze Notiz (optional)">
+          <button type="button" class="row-remove" data-remove-row aria-label="Zeile entfernen">×</button>
+        </div>
+      <% }) %>
+    </div>
+    <template data-item-template>
+      <div class="item-row">
+        <input type="text" name="item_name" placeholder="Artikelname">
+        <input type="text" name="item_note" placeholder="Kurze Notiz (optional)">
+        <button type="button" class="row-remove" data-remove-row aria-label="Zeile entfernen">×</button>
+      </div>
+    </template>
+    <button type="button" class="btn-admin" data-add-row>+ Unterartikel hinzufügen</button>
+  </section>
+
+  <section class="form-card">
+    <h2>Bilder</h2>
+    <% if (product.images.length > 0) { %>
+      <p class="form-help">Das erste Bild ist das Titelbild. Zum Entfernen ankreuzen und speichern.</p>
+      <div class="image-grid">
+        <% product.images.forEach((image) => { %>
+          <label class="image-tile">
+            <img src="<%= image %>" alt="">
+            <span class="image-delete">
+              <input type="checkbox" name="delete_images" value="<%= image %>"> Entfernen
+            </span>
+          </label>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <p class="form-help">Noch keine Bilder – ohne Bild zeigt der Shop eine neutrale Platzhalter-Grafik.</p>
+    <% } %>
+    <label class="file-label">
+      <span>Neue Bilder hochladen (JPG, PNG oder WebP, max. 5 MB pro Bild)</span>
+      <input type="file" name="images" accept="image/jpeg,image/png,image/webp" multiple>
+    </label>
+  </section>
+
+  <div class="form-actions">
+    <button type="submit" class="btn-admin btn-admin-primary">
+      <%= isNew ? 'Box anlegen' : 'Änderungen speichern' %>
+    </button>
+    <a class="btn-admin" href="/admin/produkte">Abbrechen</a>
+  </div>
+</form>
+
+<%- include('partials/foot') %>

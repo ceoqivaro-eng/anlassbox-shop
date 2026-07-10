@@ -1,0 +1,70 @@
+<%- include('partials/head') %>
+
+<header class="admin-page-head">
+  <div>
+    <h1>Boxen</h1>
+    <p><%= products.length %> Boxen im Sortiment</p>
+  </div>
+  <a class="btn-admin btn-admin-primary" href="/admin/produkte/neu">+ Neue Box</a>
+</header>
+
+<% if (saved) { %><p class="flash flash-ok">Gespeichert.</p><% } %>
+
+<% if (products.length === 0) { %>
+  <div class="admin-empty">
+    <p>Noch keine Boxen angelegt.</p>
+    <a class="btn-admin btn-admin-primary" href="/admin/produkte/neu">Erste Box anlegen</a>
+  </div>
+<% } else { %>
+  <div class="admin-table-wrap">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Box</th>
+          <th>Kategorie</th>
+          <th>Preis</th>
+          <th>Teile</th>
+          <th>Status</th>
+          <th class="th-actions">Aktionen</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% products.forEach((product) => { %>
+          <tr class="<%= product.active ? '' : 'row-inactive' %>">
+            <td>
+              <div class="cell-product">
+                <img src="<%= product.images[0] || '/img/boxes/platzhalter.svg' %>" alt="">
+                <div>
+                  <a class="cell-title" href="/admin/produkte/<%= product.id %>"><%= product.name %></a>
+                  <span class="cell-sub">/box/<%= product.slug %></span>
+                </div>
+              </div>
+            </td>
+            <td><%= product.category_name || '–' %></td>
+            <td><%= formatEuro(product.price_cents) %></td>
+            <td><%= product.item_count %></td>
+            <td>
+              <span class="status-chip <%= product.active ? 'chip-on' : 'chip-off' %>">
+                <%= product.active ? 'Sichtbar' : 'Versteckt' %>
+              </span>
+            </td>
+            <td class="cell-actions">
+              <a class="btn-admin btn-admin-small" href="/admin/produkte/<%= product.id %>">Bearbeiten</a>
+              <form method="post" action="/admin/produkte/<%= product.id %>/aktiv">
+                <button type="submit" class="btn-admin btn-admin-small">
+                  <%= product.active ? 'Verstecken' : 'Sichtbar machen' %>
+                </button>
+              </form>
+              <form method="post" action="/admin/produkte/<%= product.id %>/loeschen"
+                    onsubmit="return confirm('Diese Box wirklich endgültig löschen?')">
+                <button type="submit" class="btn-admin btn-admin-small btn-admin-danger">Löschen</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+<% } %>
+
+<%- include('partials/foot') %>

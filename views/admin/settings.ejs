@@ -1,0 +1,65 @@
+<%- include('partials/head') %>
+
+<header class="admin-page-head">
+  <div>
+    <h1>Einstellungen</h1>
+    <p>Shopname, Versandkosten und Zahlungsstatus.</p>
+  </div>
+</header>
+
+<% if (saved) { %><p class="flash flash-ok">Gespeichert.</p><% } %>
+<% (typeof errors !== 'undefined' ? errors : []).forEach((error) => { %>
+  <p class="flash flash-error"><%= error %></p>
+<% }) %>
+<% var raw = typeof rawInput !== 'undefined' ? rawInput : null; %>
+
+<form method="post" class="admin-form">
+  <section class="form-card">
+    <h2>Shop</h2>
+    <div class="form-grid">
+      <label class="span-2">
+        <span>Shopname</span>
+        <input type="text" name="shop_name" value="<%= raw ? raw.shop_name : settings.shop_name %>">
+      </label>
+    </div>
+  </section>
+
+  <section class="form-card">
+    <h2>Versand</h2>
+    <div class="form-grid">
+      <label>
+        <span>Versandkosten in €</span>
+        <input type="text" name="shipping" inputmode="decimal"
+               value="<%= raw ? raw.shipping : (settings.shipping_cents / 100).toFixed(2).replace('.', ',') %>">
+      </label>
+      <label>
+        <span>Kostenloser Versand ab € (0 = nie)</span>
+        <input type="text" name="free_shipping_from" inputmode="decimal"
+               value="<%= raw ? raw.free_shipping_from : (settings.free_shipping_from_cents / 100).toFixed(2).replace('.', ',') %>">
+      </label>
+    </div>
+  </section>
+
+  <section class="form-card">
+    <h2>Zahlung (Stripe)</h2>
+    <% if (stripeEnabled) { %>
+      <p class="status-chip chip-on">Stripe ist verbunden</p>
+      <p class="form-help">Zahlungen laufen live über dein Stripe-Konto.</p>
+    <% } else { %>
+      <p class="status-chip chip-demo">Demo-Modus</p>
+      <p class="form-help">
+        Es ist noch kein Stripe-Schlüssel hinterlegt. So schaltest du echte Zahlungen frei:<br>
+        1. Kostenloses Konto auf stripe.com anlegen.<br>
+        2. Im Stripe-Dashboard unter „Entwickler → API-Schlüssel“ den geheimen Schlüssel kopieren.<br>
+        3. In der Datei <code>.env</code> bei <code>STRIPE_SECRET_KEY=</code> einfügen.<br>
+        4. Server neu starten – fertig.
+      </p>
+    <% } %>
+  </section>
+
+  <div class="form-actions">
+    <button type="submit" class="btn-admin btn-admin-primary">Speichern</button>
+  </div>
+</form>
+
+<%- include('partials/foot') %>

@@ -1,0 +1,42 @@
+<%- include('partials/head') %>
+
+<section class="section">
+  <div class="container cart-layout"
+       id="cart-root"
+       data-shipping="<%= settings.shipping_cents %>"
+       data-free-from="<%= settings.free_shipping_from_cents %>">
+
+    <div class="cart-main">
+      <h1>Dein Warenkorb</h1>
+
+      <div data-cart-empty hidden class="cart-empty">
+        <p>Dein Warenkorb ist noch leer.</p>
+        <a class="btn btn-primary" href="/#boxen">Boxen entdecken</a>
+      </div>
+
+      <ul class="cart-list" data-cart-list></ul>
+    </div>
+
+    <aside class="cart-summary" data-cart-summary hidden>
+      <h2>Übersicht</h2>
+      <dl class="summary-rows">
+        <div><dt>Zwischensumme</dt><dd data-sum-subtotal>–</dd></div>
+        <div><dt>Versand</dt><dd data-sum-shipping>–</dd></div>
+        <div class="summary-total"><dt>Gesamt</dt><dd data-sum-total>–</dd></div>
+      </dl>
+      <% if (settings.free_shipping_from_cents > 0) { %>
+        <p class="summary-hint" data-free-shipping-hint hidden></p>
+      <% } %>
+      <button type="button" class="btn btn-primary btn-block" data-checkout>
+        Zur Kasse
+      </button>
+      <% if (!stripeEnabled) { %>
+        <p class="summary-demo-note">Demo-Modus: Es wird keine echte Zahlung ausgeführt.</p>
+      <% } %>
+      <p class="summary-error" data-checkout-error role="alert" hidden></p>
+      <p class="summary-legal">Alle Preise inkl. MwSt. Mit dem Klick auf „Zur Kasse“ gelten unsere <a href="/agb">AGB</a>.</p>
+    </aside>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

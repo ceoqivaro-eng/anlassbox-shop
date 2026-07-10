@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#E9F1EB"/>
+  <circle cx="160" cy="140" r="130" fill="#D8E6DC" opacity="0.8"/>
+  <circle cx="650" cy="470" r="110" fill="#D8E6DC" opacity="0.6"/>
+  <g fill="none" stroke="#2A2721" stroke-width="11" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Koffer -->
+    <rect x="270" y="240" width="260" height="210" rx="26"/>
+    <!-- Griff -->
+    <path d="M355 240 v-36 a20 20 0 0 1 20 -20 h50 a20 20 0 0 1 20 20 v36"/>
+    <!-- Gurte -->
+    <path d="M340 240 V450 M460 240 V450"/>
+  </g>
+  <!-- Aufkleber -->
+  <circle cx="400" cy="345" r="38" fill="#E8543F"/>
+  <path d="M400 325 c10 12 10 28 0 40 c-10 -12 -10 -28 0 -40z M380 345 h40" fill="none" stroke="#FFF7F1" stroke-width="7" stroke-linecap="round"/>
+  <!-- Papierflieger -->
+  <g fill="none" stroke="#2A2721" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M565 155 l95 -35 -45 88 -22 -32 z"/>
+    <path d="M615 208 l-2 26"/>
+  </g>
+  <path d="M470 190 q40 -35 88 -55" fill="none" stroke="#A8C3B0" stroke-width="8" stroke-linecap="round" stroke-dasharray="2 18"/>
+  <!-- Sonne -->
+  <circle cx="185" cy="420" r="26" fill="none" stroke="#A8C3B0" stroke-width="9"/>
+  <g stroke="#A8C3B0" stroke-width="9" stroke-linecap="round">
+    <path d="M185 378 v-14 M185 462 v14 M227 420 h14 M143 420 h-14"/>
+  </g>
+</svg>

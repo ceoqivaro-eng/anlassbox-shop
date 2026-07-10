@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#E8EFF4"/>
+  <circle cx="170" cy="130" r="130" fill="#D6E3EC" opacity="0.8"/>
+  <circle cx="660" cy="480" r="110" fill="#D6E3EC" opacity="0.6"/>
+  <!-- Straße -->
+  <path d="M120 468 H680" stroke="#B9C9D4" stroke-width="10" stroke-linecap="round"/>
+  <path d="M180 468 h60 M300 468 h60 M420 468 h60 M540 468 h60" stroke="#E8EFF4" stroke-width="10"/>
+  <g fill="none" stroke="#2A2721" stroke-width="11" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Karosserie -->
+    <path d="M215 430 h-30 a18 18 0 0 1 -18 -18 v-40 a24 24 0 0 1 24 -24 h80 l60 -70 h150 c40 0 90 40 110 70 l40 8 a24 24 0 0 1 19 23 v33 a18 18 0 0 1 -18 18 h-27"/>
+    <!-- Fenster -->
+    <path d="M350 285 l-48 60 h150 c-14-24-52-56-80-60z"/>
+    <!-- Räder -->
+    <circle cx="280" cy="430" r="42"/>
+    <circle cx="565" cy="430" r="42"/>
+  </g>
+  <circle cx="280" cy="430" r="14" fill="#E8543F"/>
+  <circle cx="565" cy="430" r="14" fill="#E8543F"/>
+  <!-- L-Schild (Fahranfänger) -->
+  <g>
+    <rect x="410" y="380" width="56" height="56" rx="10" fill="#E8543F"/>
+    <path d="M429 394 v30 h22" fill="none" stroke="#FFF7F1" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <!-- Schwung -->
+  <g fill="none" stroke="#9FB4C2" stroke-width="9" stroke-linecap="round">
+    <path d="M150 330 h55"/>
+    <path d="M130 365 h45"/>
+  </g>
+</svg>

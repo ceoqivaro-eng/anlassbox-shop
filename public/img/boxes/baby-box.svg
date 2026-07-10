@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#FBECEE"/>
+  <circle cx="640" cy="140" r="140" fill="#F5DBDF" opacity="0.8"/>
+  <circle cx="140" cy="470" r="100" fill="#F5DBDF" opacity="0.6"/>
+  <g fill="none" stroke="#2A2721" stroke-width="11" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Strampler: Körper -->
+    <path d="M330 220 h140 l50 40 -34 42 -16 -12 v90 c0 44 -30 80 -70 80 s-70 -36 -70 -80 v-90 l-16 12 -34 -42 z"/>
+    <!-- Druckknöpfe -->
+    <path d="M368 445 h64" stroke-width="9"/>
+  </g>
+  <circle cx="400" cy="330" r="7" fill="#2A2721"/>
+  <circle cx="400" cy="365" r="7" fill="#2A2721"/>
+  <!-- Herz auf der Brust -->
+  <path d="M400 268 c-8-12 -26-10 -26 4 c0 10 12 17 26 27 c14-10 26-17 26-27 c0-14 -18-16 -26-4z" fill="#E8543F"/>
+  <!-- Sterne -->
+  <g fill="#E8B7BF">
+    <path d="M235 190 l7 18 18 7 -18 7 -7 18 -7 -18 -18 -7 18 -7z"/>
+    <path d="M580 420 l6 15 15 6 -15 6 -6 15 -6 -15 -15 -6 15 -6z"/>
+  </g>
+  <!-- Wäscheleine-Andeutung -->
+  <path d="M180 150 q220 60 440 0" fill="none" stroke="#DBB8BE" stroke-width="8" stroke-linecap="round" stroke-dasharray="1 22"/>
+</svg>

@@ -1,0 +1,55 @@
+<%- include('partials/head') %>
+
+<header class="admin-page-head">
+  <div>
+    <h1>Kategorien</h1>
+    <p>Anlässe gruppieren – z. B. Meilensteine, Feiertage, Hobbys, Events.</p>
+  </div>
+</header>
+
+<% if (error) { %><p class="flash flash-error"><%= error %></p><% } %>
+
+<section class="form-card">
+  <h2>Neue Kategorie</h2>
+  <form method="post" action="/admin/kategorien" class="inline-form">
+    <input type="text" name="name" placeholder="z. B. Feiertage" required>
+    <button type="submit" class="btn-admin btn-admin-primary">Anlegen</button>
+  </form>
+</section>
+
+<div class="admin-table-wrap">
+  <table class="admin-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Boxen</th>
+        <th class="th-actions">Aktionen</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% categories.forEach((category) => { %>
+        <tr>
+          <td>
+            <form method="post" action="/admin/kategorien/<%= category.id %>" class="inline-form">
+              <input type="text" name="name" value="<%= category.name %>" required>
+              <button type="submit" class="btn-admin btn-admin-small">Umbenennen</button>
+            </form>
+          </td>
+          <td><%= category.product_count %></td>
+          <td class="cell-actions">
+            <form method="post" action="/admin/kategorien/<%= category.id %>/loeschen"
+                  onsubmit="return confirm('Kategorie löschen?')">
+              <button type="submit" class="btn-admin btn-admin-small btn-admin-danger"
+                      <%= category.product_count > 0 ? 'disabled' : '' %>
+                      <% if (category.product_count > 0) { %>title="Enthält noch Boxen"<% } %>>
+                Löschen
+              </button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<%- include('partials/foot') %>

@@ -1,0 +1,70 @@
+<%- include('partials/head') %>
+
+<header class="admin-page-head">
+  <div>
+    <h1>Bestellungen</h1>
+    <p>
+      <% if (stripeEnabled) { %>
+        Zahlungen laufen über Stripe – Status „bezahlt“ wird automatisch gesetzt.
+      <% } else { %>
+        Demo-Modus aktiv: Bestellungen werden gespeichert, aber nicht bezahlt.
+      <% } %>
+    </p>
+  </div>
+</header>
+
+<% if (orders.length === 0) { %>
+  <div class="admin-empty"><p>Noch keine Bestellungen eingegangen.</p></div>
+<% } else { %>
+  <div class="admin-table-wrap">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Nr.</th>
+          <th>Datum</th>
+          <th>Artikel</th>
+          <th>Kunde</th>
+          <th>Summe</th>
+          <th>Status</th>
+          <th class="th-actions">Status ändern</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% orders.forEach((order) => { %>
+          <tr>
+            <td><strong><%= order.ref %></strong></td>
+            <td class="cell-nowrap"><%= formatDateTime(order.created_at) %></td>
+            <td>
+              <% order.items.forEach((item) => { %>
+                <div class="cell-sub"><%= item.qty %>× <%= item.name %></div>
+              <% }) %>
+            </td>
+            <td>
+              <% if (order.name || order.email) { %>
+                <%= order.name %><br><span class="cell-sub"><%= order.email %></span>
+              <% } else { %>–<% } %>
+            </td>
+            <td><%= formatEuro(order.amount_cents) %></td>
+            <td>
+              <span class="status-chip <%= order.status === 'bezahlt' || order.status === 'versendet' ? 'chip-on' : (order.status === 'demo' ? 'chip-demo' : 'chip-off') %>">
+                <%= order.status %>
+              </span>
+            </td>
+            <td>
+              <form method="post" action="/admin/bestellungen/<%= order.id %>/status" class="inline-form">
+                <select name="status" onchange="this.form.submit()" aria-label="Status ändern">
+                  <% ['offen', 'bezahlt', 'versendet', 'storniert'].forEach((state) => { %>
+                    <option value="<%= state %>" <%= order.status === state ? 'selected' : '' %>><%= state %></option>
+                  <% }) %>
+                </select>
+                <noscript><button type="submit" class="btn-admin btn-admin-small">Setzen</button></noscript>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+<% } %>
+
+<%- include('partials/foot') %>

@@ -1,0 +1,24 @@
+{
+  "name": "anlassbox-shop",
+  "version": "1.0.0",
+  "description": "AnlassBox – Webshop für Geschenkboxen zu jedem Anlass",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "seed": "node src/seed.js",
+    "build:static": "node src/export-static.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.2.0",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "multer": "^2.0.1",
+    "stripe": "^18.0.0"
+  }
+}
