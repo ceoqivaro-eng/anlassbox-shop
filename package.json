@@ -8,7 +8,9 @@
     "start": "node server.js",
     "seed": "node src/seed.js",
     "update-items": "node src/update-items.js",
-    "build:static": "node src/export-static.js"
+    "build:static": "node src/export-static.js",
+    "deploy": "wrangler deploy",
+    "preview": "wrangler dev"
   },
   "engines": {
     "node": ">=18"
@@ -21,5 +23,8 @@
     "express-session": "^1.18.1",
     "multer": "^2.0.1",
     "stripe": "^18.0.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.110.0"
   }
 }
