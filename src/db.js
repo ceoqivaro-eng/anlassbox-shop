@@ -226,7 +226,7 @@ function seedIfEmpty() {
         name: 'Baby-Box',
         subtitle: 'Willkommen, kleiner Mensch',
         description:
-          'Ein neuer Erdenbürger ist da – und mit ihm die Frage: Was schenkt man frischen Eltern, das wirklich gebraucht wird? Diese Box antwortet mit zehn durchdachten Teilen für die ersten Wochen: praktisch, weich und zum Verlieben.',
+          'Ein neuer Erdenbürger ist da – und mit ihm die Frage: Was schenkt man frischen Eltern, das wirklich gebraucht wird? Diese Box antwortet mit neun durchdachten Teilen für die ersten Wochen: praktisch, weich und zum Verlieben.',
         price_cents: 4490,
         badge: 'Beliebt',
         sort: 2,
@@ -269,7 +269,7 @@ function seedIfEmpty() {
         name: 'Breakup-Box',
         subtitle: 'Erste Hilfe für gebrochene Herzen',
         description:
-          'Manchmal braucht es keine Ratschläge, sondern eine Umarmung in Kartonform. Die Breakup-Box ist das Geschenk für die beste Freundin oder den besten Freund mit Liebeskummer: zehn Teile zum Auffangen, Aufpäppeln und langsam wieder Nach-vorne-schauen.',
+          'Manchmal braucht es keine Ratschläge, sondern eine Umarmung in Kartonform. Die Breakup-Box ist das Geschenk für die beste Freundin oder den besten Freund mit Liebeskummer: neun Teile zum Auffangen, Aufpäppeln und langsam wieder Nach-vorne-schauen.',
         price_cents: 3490,
         badge: 'Mit Herz',
         sort: 4,
