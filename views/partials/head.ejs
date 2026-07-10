@@ -29,15 +29,29 @@
       <a href="/#so-gehts">So funktioniert&rsquo;s</a>
       <% if (isAdmin) { %><a href="/admin/produkte">Admin</a><% } %>
     </nav>
-    <a class="cart-link" href="/warenkorb">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M6 7h12l1.2 13H4.8L6 7z"/>
-        <path d="M9 9V6a3 3 0 0 1 6 0v3"/>
-      </svg>
-      <span>Warenkorb</span>
-      <span class="cart-count" data-cart-count hidden>0</span>
-    </a>
+    <div class="header-actions">
+      <a class="cart-link" href="/warenkorb">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 7h12l1.2 13H4.8L6 7z"/>
+          <path d="M9 9V6a3 3 0 0 1 6 0v3"/>
+        </svg>
+        <span class="cart-link-text">Warenkorb</span>
+        <span class="cart-count" data-cart-count hidden>0</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-label="Menü öffnen"
+              aria-expanded="false" aria-controls="mobile-nav" data-nav-toggle>
+        <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+    </div>
   </div>
 </header>
+
+<div class="nav-backdrop" data-nav-backdrop></div>
+<nav class="mobile-nav" id="mobile-nav" aria-label="Mobile Navigation" data-mobile-nav>
+  <a href="/#boxen">Boxen</a>
+  <a href="/#so-gehts">So funktioniert&rsquo;s</a>
+  <a href="/warenkorb">Warenkorb</a>
+  <% if (isAdmin) { %><a href="/admin/produkte">Admin-Bereich</a><% } %>
+</nav>
 
 <main id="main">

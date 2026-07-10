@@ -33,24 +33,26 @@
         <% orders.forEach((order) => { %>
           <tr>
             <td><strong><%= order.ref %></strong></td>
-            <td class="cell-nowrap"><%= formatDateTime(order.created_at) %></td>
-            <td>
+            <td class="cell-nowrap" data-label="Datum"><%= formatDateTime(order.created_at) %></td>
+            <td data-label="Artikel">
+              <span>
               <% order.items.forEach((item) => { %>
-                <div class="cell-sub"><%= item.qty %>× <%= item.name %></div>
+                <span class="cell-sub"><%= item.qty %>× <%= item.name %></span><br>
               <% }) %>
+              </span>
             </td>
-            <td>
+            <td data-label="Kunde">
               <% if (order.name || order.email) { %>
-                <%= order.name %><br><span class="cell-sub"><%= order.email %></span>
+                <span><%= order.name %><br><span class="cell-sub"><%= order.email %></span></span>
               <% } else { %>–<% } %>
             </td>
-            <td><%= formatEuro(order.amount_cents) %></td>
-            <td>
+            <td data-label="Summe"><%= formatEuro(order.amount_cents) %></td>
+            <td data-label="Status">
               <span class="status-chip <%= order.status === 'bezahlt' || order.status === 'versendet' ? 'chip-on' : (order.status === 'demo' ? 'chip-demo' : 'chip-off') %>">
                 <%= order.status %>
               </span>
             </td>
-            <td>
+            <td data-label="Status ändern">
               <form method="post" action="/admin/bestellungen/<%= order.id %>/status" class="inline-form">
                 <select name="status" onchange="this.form.submit()" aria-label="Status ändern">
                   <% ['offen', 'bezahlt', 'versendet', 'storniert'].forEach((state) => { %>

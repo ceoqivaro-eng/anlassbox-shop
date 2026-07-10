@@ -35,8 +35,8 @@
               <button type="submit" class="btn-admin btn-admin-small">Umbenennen</button>
             </form>
           </td>
-          <td><%= category.product_count %></td>
-          <td class="cell-actions">
+          <td data-label="Boxen"><%= category.product_count %></td>
+          <td class="cell-actions" data-label="Aktionen">
             <form method="post" action="/admin/kategorien/<%= category.id %>/loeschen"
                   onsubmit="return confirm('Kategorie löschen?')">
               <button type="submit" class="btn-admin btn-admin-small btn-admin-danger"

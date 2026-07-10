@@ -392,12 +392,66 @@ code {
     flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
-    gap: 0.8rem;
+    gap: 0.6rem 0.8rem;
   }
-  .admin-nav { display: flex; flex-wrap: wrap; }
-  .admin-sidebar-foot { margin: 0 0 0 auto; grid-auto-flow: column; align-items: center; }
+  .admin-brand { flex: 1 1 auto; }
+  .admin-nav { display: flex; flex-wrap: wrap; width: 100%; order: 3; }
+  .admin-nav a { padding: 0.5rem 0.8rem; }
+  .admin-sidebar-foot { margin: 0; display: flex; gap: 0.9rem; align-items: center; }
   .admin-main { padding: 1.4rem 1.2rem 3rem; }
   .form-grid { grid-template-columns: 1fr; }
   .item-row { grid-template-columns: 1fr auto; }
   .item-row input[name="item_note"] { grid-column: 1 / -1; }
+  .admin-page-head { flex-direction: column; align-items: stretch; }
+}
+
+/* Tabellen auf dem Handy als Karten statt Querscrollen */
+@media (max-width: 680px) {
+  .admin-table-wrap { border: 0; background: none; overflow: visible; }
+  .admin-table thead { display: none; }
+  .admin-table, .admin-table tbody, .admin-table tr, .admin-table td { display: block; width: 100%; }
+  .admin-table tr {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    margin-bottom: 0.9rem;
+    padding: 0.3rem 1rem;
+  }
+  .admin-table tbody tr:hover { background: var(--surface); }
+  .admin-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    text-align: right;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .admin-table tr td:last-child { border-bottom: 0; }
+  .admin-table td::before {
+    content: attr(data-label);
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-align: left;
+    flex-shrink: 0;
+  }
+  /* Erste Spalte = Kartenkopf (ohne Label, linksbündig) */
+  .admin-table td:first-child {
+    justify-content: flex-start;
+    text-align: left;
+    padding-top: 0.3rem;
+  }
+  .admin-table td:first-child::before { display: none; }
+  .cell-actions { flex-wrap: wrap; justify-content: flex-end; }
+  .inline-form { flex: 1; }
+  .inline-form input { max-width: none; }
+  .th-actions { display: none; }
+}
+
+@media (max-width: 460px) {
+  .admin-sidebar-foot { width: 100%; justify-content: space-between; order: 4; }
+  .login-card { padding: 1.6rem; }
 }

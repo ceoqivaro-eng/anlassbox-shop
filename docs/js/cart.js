@@ -91,6 +91,38 @@
     toastTimer = setTimeout(function () { toast.hidden = true; }, 4000);
   }
 
+  // ---------- Mobile Navigation (Drawer) ----------
+
+  (function initMobileNav() {
+    var toggle = document.querySelector('[data-nav-toggle]');
+    var drawer = document.querySelector('[data-mobile-nav]');
+    var backdrop = document.querySelector('[data-nav-backdrop]');
+    if (!toggle || !drawer || !backdrop) return;
+
+    function setOpen(open) {
+      drawer.classList.toggle('is-open', open);
+      backdrop.classList.toggle('is-open', open);
+      document.body.classList.toggle('nav-open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+    }
+
+    toggle.addEventListener('click', function () {
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+    backdrop.addEventListener('click', function () { setOpen(false); });
+    drawer.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () { setOpen(false); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setOpen(false);
+    });
+    // Bei Wechsel auf Desktop-Breite offenen Drawer sicher schließen
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 760) setOpen(false);
+    });
+  })();
+
   // ---------- Mengen-Stepper (Detailseite) ----------
 
   function bindStepper(stepper, onChange) {
