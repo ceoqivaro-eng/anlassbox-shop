@@ -4,7 +4,19 @@ Ein kompletter Webshop für Geschenkboxen zu jedem Anlass: Shop mit Warenkorb un
 Stripe-Kasse, plus Admin-Bereich zum Pflegen von Boxen, Kategorien und Bestellungen –
 ganz ohne Code anzufassen.
 
-## Starten
+## 🔎 Live-Demo (zur Präsentation)
+
+**https://sundsoffice-tech.github.io/anlassbox-shop/**
+
+Eine statische Vorschau des Shops zum Herzeigen – Kunden klicken sich durch alle Boxen,
+sehen das Design und die „Das ist drin“-Listen und können in den Warenkorb legen. Der
+Bezahl-Vorgang zeigt dort einen Demo-Hinweis (echte Zahlung und Admin brauchen einen
+laufenden Server, siehe unten).
+
+Vorschau neu bauen nach Änderungen: `npm run build:static` (schreibt nach `docs/`),
+dann committen und pushen – GitHub Pages aktualisiert sich automatisch.
+
+## Der echte Shop starten (lokal, mit Kasse & Admin)
 
 ```bash
 npm install
